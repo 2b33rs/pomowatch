@@ -12,6 +12,6 @@
     </padding>
 
     <Label fx:id="welcomeText" text="Stopwatch"/>
-    <Label fx:id="timer" text="00:00:00"/>
-    <Button fx:id="control_btn" text="Start!" onAction="#onTimerButtonClick"/>
+    <Label fx:id="stopwatch" text="00:00:00"/>
+    <Button fx:id="control_btn" text="Start!" onAction="#onStopwatchButtonClick"/>
 </VBox>

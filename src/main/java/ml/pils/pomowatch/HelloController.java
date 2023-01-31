@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import static java.lang.Thread.sleep;
 
 public class HelloController {
-    public Label timer;
+    public Label stopwatch;
     public Button control_btn;
     @FXML
     private boolean semaphore;
@@ -19,28 +19,44 @@ public class HelloController {
 
 
     @FXML
-    protected void onTimerButtonClick() {
-        //start a timer here
-        semaphore = !semaphore;
-        AtomicLong time = new AtomicLong(0L);
+    protected void onStopwatchButtonClick() {
         if (semaphore) {
-            timeline = new Timeline(new KeyFrame(javafx.util.Duration.seconds(1), event -> {
-//                long time = getTimeInSeconds(timer);
-                time.getAndIncrement();
-                timer.setText(time.get() / 3600 + ":" + time.get() / 60 + ":" + time.get() % 60);
-            }));
-            timeline.setCycleCount(Timeline.INDEFINITE);
-            timeline.play();
-            control_btn.setText("Reset!");
+            timeline.pause();
+            control_btn.setText("Start");
+            semaphore = false;
         } else {
-            timeline.stop();
-            control_btn.setText("Start!");
+            timeline.play();
+            control_btn.setText("Stop");
+            semaphore = true;
         }
     }
 
-    private long getTimeInSeconds(Label timer) {
+//    @FXML
+//    protected void onResetButtonClick() {
+//        timeline.stop();
+//        stopwatch.setText("00:00:00");
+//        control_btn.setText("Start");
+//        semaphore = false;
+//    }
 
-        String[] time = timer.getText().split(":");
-        return Integer.parseInt(time[0]) * 3600L + Integer.parseInt(time[1]) * 60L + Integer.parseInt(time[2]);
+    @FXML
+    protected void initialize() {
+        AtomicLong seconds = new AtomicLong(0);
+        timeline = new Timeline(new KeyFrame(
+                javafx.util.Duration.seconds(1),
+                ae -> {
+                    seconds.getAndIncrement();
+                    stopwatch.setText(formatTime(seconds.get()));
+                }
+        ));
+        timeline.setCycleCount(Timeline.INDEFINITE);
     }
+
+    private String formatTime(long l) {
+        long hours = l / 3600;
+        long minutes = (l % 3600) / 60;
+        long seconds = l % 60;
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+    }
+
 }
