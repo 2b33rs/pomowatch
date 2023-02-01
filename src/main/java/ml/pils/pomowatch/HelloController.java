@@ -13,20 +13,20 @@ public class HelloController {
     public Label stopwatch;
     public Button control_btn;
     @FXML
-    private boolean semaphore;
+    private boolean semaphor;
     Timeline timeline;
 
 
     @FXML
     protected void onStopwatchButtonClick() {
-        if (semaphore) {
+        if (semaphor) {
             timeline.pause();
             control_btn.setText("Start");
-            semaphore = false;
+            semaphor = false;
         } else {
             timeline.play();
             control_btn.setText("Stop");
-            semaphore = true;
+            semaphor = true;
         }
     }
 
