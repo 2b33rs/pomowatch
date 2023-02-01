@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-import static java.lang.Thread.sleep;
 
 public class HelloController {
     public Label stopwatch;
@@ -31,13 +30,6 @@ public class HelloController {
         }
     }
 
-//    @FXML
-//    protected void onResetButtonClick() {
-//        timeline.stop();
-//        stopwatch.setText("00:00:00");
-//        control_btn.setText("Start");
-//        semaphore = false;
-//    }
 
     @FXML
     protected void initialize() {
