@@ -1,5 +1,7 @@
 # Pomodoro Timer
 
+![](https://freesvg.org/storage/img/thumb/lmproulx-Timer-Minuterie.png)
+
 This project is a simple Pomodoro Timer application built using Java with JavaFX. The main purpose of the application is to provide a local solution for managing time while studying, cooking, or performing any activity that requires focused work.
 
 ## How to use
